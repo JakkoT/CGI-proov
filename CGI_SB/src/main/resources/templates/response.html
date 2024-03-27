@@ -3,7 +3,58 @@
 <head>
     <title>Form Submitted</title>
 </head>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+    table {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+
 <body>
-<h1 th:text="${message}">Default Message</h1>
+<h1 th:text="${film.toString()}">Default Message</h1>
+<br>
+<form th:action="@{/films/{id}(id=${film.id})}" method="post">
+<label for="kohtadeArv">Mitu kohta soovite:</label>
+<select name="kohtadeArv" id="kohtadeArv">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
+<p th:text="${kohtadeArv}">Kohtade Arv</p>
+
+<form th:action="@{/films/{id}(id=${film.id})}" method="post">
+    <label for="valik">Kuhu soovite:</label>
+    <select name="valik" id="valik">
+        <option value="1 1">Rida 1, Koht 1</option>
+        <option value="2 3">Rida 2 koht 3</option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+
+
+
+
+
+<table>
+    <tr th:each="row, rowStat : ${kohad.getGrid()}">
+        <td th:each="cell : ${row}" th:text="${cell}"></td>
+    </tr>
+</table>
+
+
+
 </body>
 </html>

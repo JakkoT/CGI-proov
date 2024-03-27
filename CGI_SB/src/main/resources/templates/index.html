@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Example Page</title>
+    <title>Kino</title>
 </head>
 <body>
-<h1>Welcome to the Example Page</h1>
-<p>This is a simple HTML page served by Spring Boot.</p>
-<form action="/html" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name"><br><br>
-    <input type="submit" value="Submit">
-</form>
+<h1>Tere, XYZ kino lehele!</h1>
+<p>Jakko Turro kino! Mis filmi soovite vaadata?</p>
+<ul>
+    <li th:each="film : ${filmid}" >
+        <a th:href="@{/films/{id}(id=${film.getId()})}" th:text="${film.getNimi()}">Filmide nimekiri</a>
+        <p th:text="${film.getNimi() + ', vanusepiiranguga ' + film.getVanusepiirang() + '. Keel: ' + film.getKeel()}">Filmide nimekiri</p>
+
+    </li>
+</ul>
+
 </body>
 </html>
